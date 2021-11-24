@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+//import pages here to create routes for them
 import './App.css';
+import {BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Home from "./Pages/Home";
+import CreatePost from "./Pages/CreatePost";
+import Post from './Pages/Post';
+import Registration from "./Pages/Registration";
+import Login from "./Pages/Login";
+import CreateGraph from "./Pages/CreateGraph";
 
-function App() {
+
+function App() 
+{
+  // key is index in array, value is value (refer to console log to see that array)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+          <div className="navbar">
+            <div className="links">
+              <Link to="/"> Home Page</Link>
+              <Link to="/creategraph"> Create Graph</Link>
+              <Link to="/createpost"> Make Notes</Link>
+                  <Link to="/login"> Login</Link>
+                  <Link to="/registration"> Registration</Link>
+            </div>
+
+          </div>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/creategraph" exact component={CreateGraph} />
+            <Route path="/createpost" exact component={CreatePost} />
+            <Route path="/post/:id" exact component={Post} />
+            <Route path="/registration" exact component={Registration} />
+            <Route path="/login" exact component={Login} />
+          </Switch>
+        </Router>
     </div>
   );
 }
